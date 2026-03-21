@@ -31,3 +31,7 @@ jobs:
     uses: ./.github/workflows/trivy.yml
     secrets: inherit
     
+  deploy-to-prod:
+    needs: [trivy-scan]
+    uses: ./.github/workflows/deploy-to-server.yml
+    secrets : inherit
