@@ -37,7 +37,7 @@ jobs:
                 key: ${{ secrets.SERVER_KEY }}
                 script: |
                  echo "running the deployment" 
-                 sudo apt-get update  
+                 sudo apt-get update  S
                  sudo apt-get install docker.io -y
                  sudo usermod -aG docker $USER && newgrp docker
                  cd ~/devops
