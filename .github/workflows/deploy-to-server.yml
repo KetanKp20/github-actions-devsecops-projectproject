@@ -39,7 +39,7 @@ jobs:
                  echo "running the deployment" 
                  sudo apt-get update  
                  sudo apt-get install docker.io -y
-                 sudo usermod -aG $USER && newgrp docker
+                 sudo usermod -aG docker $USER && newgrp docker
                  cd ~/devops
                  sudo apt-get install -y docker-compose-plugin
                  export DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }}
