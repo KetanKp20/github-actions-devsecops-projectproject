@@ -7,6 +7,8 @@ jobs:
     deployment:
         runs-on: ubuntu-latest
         steps:
+            - name: checkout code
+              uses: actions/checkout@v4
             
             - name : login to the server
               uses: appleboy/ssh-action@v1.2.5
@@ -17,3 +19,31 @@ jobs:
                 script: |
                  echo "starting deployment" 
                  mkdir devops
+
+            - name: copy docker compose
+              uses: appleboy/scp-action@v1
+              with:
+                host: ${{ secrets.SERVER_IP }}
+                username: ${{ secrets.SERVER_USERNAME }}
+                key: ${{ secrets.SERVER_KEY }}
+                source: "docker-compose.yml"
+                target: ~/devops
+
+            - name : login to the server and run the app
+              uses: appleboy/ssh-action@v1.2.5
+              with: 
+                host: ${{ secrets.SERVER_IP }}
+                username: ${{ secrets.SERVER_USERNAME }}
+                key: ${{ secrets.SERVER_KEY }}
+                script: |
+                 echo "running the deployment" 
+                 sudo apt-get update  
+                 sudo apt-get install docker.io -y
+                 sudo apt-get docker-compose-v2 -y
+                 sudo usermod -aG $USER && newgrp docker
+                 cd ~devops
+                 docker compose down
+                 docker compose up -d --build --force-recreate --pull always
+
+
+
