@@ -18,7 +18,7 @@ jobs:
                 key: ${{ secrets.SERVER_KEY }}
                 script: |
                  echo "starting deployment" 
-                 mkdir devops
+                 mkdir -p devops
 
             - name: copy docker compose
               uses: appleboy/scp-action@v1
