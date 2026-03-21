@@ -22,7 +22,7 @@ jobs:
                 context: .
                 push: true
                 tags : | 
-                    ${{secrets.DOCKERHUB_USERNAME }}/github-actions-app:${{github.ref}}
+                    ${{secrets.DOCKERHUB_USERNAME }}/github-actions-app:${{github.ref_name}}
                     ${{secrets.DOCKERHUB_USERNAME }}/github-actions-app:latest
                     ${{secrets.DOCKERHUB_USERNAME }}/github-actions-app:${{github.sha}}
 
