@@ -13,7 +13,7 @@ jobs:
               with: 
                 host: ${{ secrets.SERVER_IP }}
                 username: ${{ secrets.SERVER_USERNAME }}
-                password: ${{ secrets.SERVER_KEY }}
+                key: ${{ secrets.SERVER_KEY }}
                 script: |
-                 echo "starting deployment"
+                 echo "starting deployment" 
                  mkdir devops
